@@ -4,19 +4,25 @@ class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "represents a property listed on the module"
 
-    name = fields.Char('Property Name', required=True)
-    description = fields.Text("Property Description")
-    postcode = fields.Char("Property Postcode")
-    date_availability = fields.Date("")
-    expected_price = fields.Float("Expected price to buy the property", required=True)
-    selling_price = fields.Float()
-    bedrooms = fields.Integer()
-    living_area = fields.Integer()
-    facades = fields.Integer()
+    name = fields.Char('Title', required=True)
+    description = fields.Text("Description")
+    postcode = fields.Char("Postcode")
+    date_availability = fields.Date("Available From", copy=False, default="2024-3-1")
+    expected_price = fields.Float("Expected Price", required=True)
+    selling_price = fields.Float("Selling Price", readonly= True, copy=False)
+    bedrooms = fields.Integer("Bedrooms", default="2")
+    living_area = fields.Integer("Living Area (sqm)")
+    facades = fields.Integer("Facades")
     garage = fields.Boolean()
     garden = fields.Boolean()
-    garden_area = fields.Integer()
+    garden_area = fields.Integer("Garden Area (sqm)")
     garden_orientation = fields.Selection(
         string='Direction',
         selection=[('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West')],
         help="Type is used to describe which way the garden is pointing")
+    active = fields.Boolean(default=True)
+    state = fields.Selection(
+        string='State',
+        selection=[('new', 'New'), ('offer Received', 'Offer Received'), ('offer Accepted', 'Offer Accepted'), ('sold ', 'Sold'), ('canceled ', 'Canceled')],
+        help="Type is used to describe the state of the property",
+        default='new')
