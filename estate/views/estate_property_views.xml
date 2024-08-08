@@ -49,13 +49,24 @@
                                 <field name="garden_orientation"/>
                             </group>
                         </page>
+                        <page string="Other Info">
+                            <sheet>
+                                <notebook>
+                                    <page string="Other Info">
+                                        <group>
+                                            <field name="sales_person_id"/>
+                                            <field name="buyer_id"/>
+                                        </group>
+                                    </page>
+                                </notebook>
+                            </sheet>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
-
         </field>
     </record>
-    
+
 
     <record id="estate_property_view_search" model="ir.ui.view">
         <field name="name">estate.property.search</field>
