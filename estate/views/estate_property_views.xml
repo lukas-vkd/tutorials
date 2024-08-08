@@ -9,6 +9,7 @@
             <tree string="Channel">
                 <field name="name"/>
                 <field name="postcode"/>
+                <field name="tag_ids" widget="many2many_tags"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
                 <field name="expected_price"/>
@@ -24,9 +25,11 @@
         <field name="arch" type="xml">
             <form string="Test">
                 <field name="name" style="font-size:64px;"/>
+                <field name="tag_ids" widget="many2many_tags"/>
                 <sheet>
                     <group>
                         <group>
+                            <field name="property_type_id"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
                         </group>

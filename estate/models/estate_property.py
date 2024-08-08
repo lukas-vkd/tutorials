@@ -29,7 +29,11 @@ class EstateProperty(models.Model):
         help="Type is used to describe the state of the property",
         default='new')
     
+    property_type_id = fields.Many2one("estate.property.type", string="type" )
+    
     # we use the current user's id as the sales_person's id since the user who is listing the property is the seller
     sales_person_id = fields.Many2one("res.users", string="Salesman", default=lambda self: self.env.user)
     #TODO: make a decision on how to handle to buyer when the sale is done 
     buyer_id = fields.Many2one("res.partner", string="Buyer", copy=False)
+    
+    tag_ids = fields.Many2many("estate.property.tag", string="tags")
