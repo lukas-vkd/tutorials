@@ -5,7 +5,7 @@ from odoo import fields, models
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "represents a property listed on the module"
-    name = fields.Char('Title', required=True)
+    name = fields.Char("Title", required=True)
     description = fields.Text("Description")
     postcode = fields.Char("Postcode")
     # the default date_availability should be 3 months from the current time
@@ -15,19 +15,19 @@ class EstateProperty(models.Model):
     bedrooms = fields.Integer("Bedrooms", default="2")
     living_area = fields.Integer("Living Area (sqm)")
     facades = fields.Integer("Facades")
-    garage = fields.Boolean()
-    garden = fields.Boolean()
+    garage = fields.Boolean("Garage")
+    garden = fields.Boolean("Garden")
     garden_area = fields.Integer("Garden Area (sqm)")
     garden_orientation = fields.Selection(
-        string='Direction',
-        selection=[('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West')],
+        string="Direction",
+        selection=[("north", "North"), ("south", "South"), ("east", "East"), ("west", "West")],
         help="Type is used to describe which way the garden is pointing")
     active = fields.Boolean(default=True)
     state = fields.Selection(
-        string='State',
-        selection=[('new', 'New'), ('offer Received', 'Offer Received'), ('offer Accepted', 'Offer Accepted'), ('sold ', 'Sold'), ('canceled ', 'Canceled')],
+        string="State",
+        selection=[("new", "New"), ("offer Received", "Offer Received"), ("offer Accepted", "Offer Accepted"), ("sold ", "Sold"), ("canceled ", "Canceled")],
         help="Type is used to describe the state of the property",
-        default='new')
+        default="new")
     
     property_type_id = fields.Many2one("estate.property.type", string="type" )
     
@@ -37,3 +37,4 @@ class EstateProperty(models.Model):
     buyer_id = fields.Many2one("res.partner", string="Buyer", copy=False)
     
     tag_ids = fields.Many2many("estate.property.tag", string="tags")
+    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")

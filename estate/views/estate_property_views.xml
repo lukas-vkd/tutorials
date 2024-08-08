@@ -52,17 +52,20 @@
                                 <field name="garden_orientation"/>
                             </group>
                         </page>
+
+                        <page string="Offers">
+
+                            <group>
+                                <field name="offer_ids"/>
+                            </group>
+                        </page>
+
                         <page string="Other Info">
-                            <sheet>
-                                <notebook>
-                                    <page string="Other Info">
-                                        <group>
-                                            <field name="sales_person_id"/>
-                                            <field name="buyer_id"/>
-                                        </group>
-                                    </page>
-                                </notebook>
-                            </sheet>
+
+                            <group>
+                                <field name="sales_person_id"/>
+                                <field name="buyer_id"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
@@ -86,7 +89,7 @@
                 <filter string="Available" name="available" domain="[('state', 'in', ('new', 'offer_received'))]"/>
                 <!-- group by source code -->
                 <group expand="1" string="Group By">
-                    <filter string="Postcode" name='postcode' context="{'group_by':'postcode'}"/>
+                    <filter string="Postcode" name="postcode" context="{'group_by':'postcode'}"/>
                 </group>
 
             </search>
