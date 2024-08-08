@@ -1,6 +1,6 @@
 {
     'name': "Real Estate",
-    'version': '17.0.1.3.0',
+    'version': '17.0.1.3.1',
     'license': 'OPL-1',
     'author': "VK DATA ApS",
     'depends': ['base'],
@@ -10,10 +10,8 @@
     'application': True,
     'data': [
         'security/ir.model.access.csv',
-        
         'views/estate_property_views.xml',
         'views/estate_menus.xml',
-
     ]
 
 }
