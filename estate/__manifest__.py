@@ -1,6 +1,6 @@
 {
     'name': "Real Estate",
-    'version': '17.0.1.8.0',
+    'version': '17.0.1.9.0',
     'license': 'OPL-1',
     'author': "VK DATA ApS",
     'depends': ['base'],
@@ -15,6 +15,7 @@
         'views/estate_property_tag_views.xml',
         'views/estate_property_offer_views.xml',
         'views/estate_menus.xml',
+        'dev/test.xml'
     ]
 
 }
