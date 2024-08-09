@@ -52,3 +52,9 @@ class EstatePropertyOffer(models.Model):
             raise exceptions.UserError("Accepted offers cannot be refused.")
         self.status = "refused"
         return True
+
+
+    _sql_constraints = [
+        ('check_price', 'CHECK(price > 0)',
+         'The offered price must be positive')
+    ]
