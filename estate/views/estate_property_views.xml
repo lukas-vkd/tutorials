@@ -7,14 +7,14 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <tree string="Channel">
-                <field name="name"/>
-                <field name="postcode"/>
-                <field name="tag_ids" widget="many2many_tags"/>
-                <field name="bedrooms"/>
-                <field name="living_area"/>
-                <field name="expected_price"/>
-                <field name="selling_price"/>
-                <field name="date_availability"/>
+                <field name="name" />
+                <field name="postcode" />
+                <field name="tag_ids" widget="many2many_tags" />
+                <field name="bedrooms" />
+                <field name="living_area" />
+                <field name="expected_price" />
+                <field name="selling_price" />
+                <field name="date_availability" />
             </tree>
         </field>
     </record>
@@ -24,50 +24,56 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Test">
-                
-                <field name="name" style="font-size:64px;"/>
-                <field name="tag_ids" widget="many2many_tags"/>
+
+                <header>
+                    <button name="action_set_sold" type="object" string="Sold" class="oe_highlight"/>
+                    <button name="action_set_cancel" type="object" string="Cancel"/>
+                </header>
+
                 <sheet>
+
+                <field name="name" style="font-size:64px;" />
+                <field name="tag_ids" widget="many2many_tags" />
                     <group>
                         <group>
-                            <field name="property_type_id"/>
-                            <field name="postcode"/>
-                            <field name="date_availability"/>
+                            <field name="property_type_id" />
+                            <field name="postcode" />
+                            <field name="date_availability" />
                         </group>
                         <group>
-                            <field name="expected_price"/>
-                            <field name="best_price"/>
-                            <field name="selling_price"/>
+                            <field name="expected_price" />
+                            <field name="best_price" />
+                            <field name="selling_price" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Description">
                             <group>
 
-                                <field name="description"/>
-                                <field name="bedrooms"/>
-                                <field name="living_area"/>
-                                <field name="facades"/>
-                                <field name="garage"/>
-                                <field name="garden"/>
-                                <field name="garden_area"/>
-                                <field name="garden_orientation"/>
-                                <field name="total_area"/>
+                                <field name="description" />
+                                <field name="bedrooms" />
+                                <field name="living_area" />
+                                <field name="facades" />
+                                <field name="garage" />
+                                <field name="garden" />
+                                <field name="garden_area" />
+                                <field name="garden_orientation" />
+                                <field name="total_area" />
                             </group>
                         </page>
 
                         <page string="Offers">
 
                             <group>
-                                <field name="offer_ids"/>
+                                <field name="offer_ids" />
                             </group>
                         </page>
 
                         <page string="Other Info">
 
                             <group>
-                                <field name="sales_person_id"/>
-                                <field name="buyer_id"/>
+                                <field name="sales_person_id" />
+                                <field name="buyer_id" />
                             </group>
                         </page>
                     </notebook>
@@ -83,17 +89,18 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <search string="Tests">
-                <field name="name"/>
-                <field name="postcode"/>
-                <field name="expected_price"/>
-                <field name="bedrooms"/>
-                <field name="living_area"/>
-                <field name="facades"/>
+                <field name="name" />
+                <field name="postcode" />
+                <field name="expected_price" />
+                <field name="bedrooms" />
+                <field name="living_area" />
+                <field name="facades" />
                 <!-- only show estates that aren't sold -->
-                <filter string="Available" name="available" domain="[('state', 'in', ('new', 'offer_received'))]"/>
+                <filter string="Available" name="available"
+                    domain="[('state', 'in', ('new', 'offer_received'))]" />
                 <!-- group by source code -->
                 <group expand="1" string="Group By">
-                    <filter string="Postcode" name="postcode" context="{'group_by':'postcode'}"/>
+                    <filter string="Postcode" name="postcode" context="{'group_by':'postcode'}" />
                 </group>
 
             </search>
@@ -101,14 +108,14 @@
     </record>
 
 
-
     <record id="estate_property_action" model="ir.actions.act_window">
         <field name="name">Properties</field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_ids" eval="[(5, 0, 0),
+        <field name="view_ids"
+            eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('estate_property_view_tree')}),
-            (0, 0, {'view_mode': 'form', 'view_id': ref('estate_property_view_form')}),]"/>
+            (0, 0, {'view_mode': 'form', 'view_id': ref('estate_property_view_form')}),]" />
 
     </record>
 </odoo>
