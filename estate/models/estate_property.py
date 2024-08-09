@@ -3,7 +3,7 @@ from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models
 
 class EstateProperty(models.Model):
-    # fields are chronologicaly ordered to make it easier to follow the tutorial 
+    # fields and methods are chronologicaly ordered to make it easier to follow the tutorial 
     _name = "estate.property"
     _description = "represents a property listed on the module"
     name = fields.Char("Title", required=True)
@@ -63,5 +63,13 @@ class EstateProperty(models.Model):
                 if offer.price > current_best_price:
                     current_best_price = offer.price
             record.best_price = current_best_price
+
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        self.garden_area = 0
+        self.garden_orientation = ""
+        if self.garden == True:
+            self.garden_area = 10
+            self.garden_orientation = "north"
                     
     
