@@ -9,9 +9,9 @@
             <tree string="Channel">
                 <field name="price" />
                 <field name="partner_id" />
-                <button name="action_accept" type="object" string="Accept" class="oe_highlight"
+                <button name="action_accept" type="object" string="Accept" class="oe_highlight" invisible="status in ['accepted', 'refused']"
                     icon="fa-check" />
-                <button name="action_refuse" type="object" string="Refuse" />
+                <button name="action_refuse" type="object" string="Refuse" invisible="status in ['accepted', 'refused']" />
                 <field name="status" />
             </tree>
         </field>
