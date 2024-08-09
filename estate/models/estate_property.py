@@ -47,7 +47,8 @@ class EstateProperty(models.Model):
     # relationships ≽^•⩊•^≼
     #
     
-    property_type_id = fields.Many2one("estate.property.type", string="type" )
+    #unknown parameters (╯°□°)╯︵ ┻━┻
+    property_type_id = fields.Many2one("estate.property.type", string="type", can_create="false", can_write="false" )
     
     # we use the current user's id as the sales_person's id since the user who is listing the property is the seller
     sales_person_id = fields.Many2one("res.users", string="Salesman", default=lambda self: self.env.user)
@@ -113,13 +114,3 @@ class EstateProperty(models.Model):
             raise exceptions.UserError("the selling price can't be lower than 90% of the expected price")
     
     
-    # is this best practice?
-    @api.onchange("expected_price")
-    def _onchange_expected_price(self):
-        check_price()
-
-    
-    @api.onchange("selling_price")
-    def _onchange_selling_price(self):
-        check_price()
-

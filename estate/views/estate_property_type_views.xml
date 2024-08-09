@@ -7,8 +7,8 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <tree string="Channel">
+                <field name="sequence" widget="handle"/>
                 <field name="name" />
-
                 <field name="property_ids" />
 
 
