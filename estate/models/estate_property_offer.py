@@ -1,7 +1,7 @@
 from dateutil.relativedelta import relativedelta
 import datetime
 
-from odoo import api, fields, models
+from odoo import api, fields, models, exceptions
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
