@@ -10,3 +10,5 @@ class EstatePropertyType(models.Model):
         ('unique_name', 'UNIQUE(name)',
          'The name of the type must be unique')
     ]
+    
+    property_ids = fields.One2many("estate.property", inverse_name="property_type_id")

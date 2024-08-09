@@ -8,6 +8,10 @@
         <field name="arch" type="xml">
             <tree string="Channel">
                 <field name="name" />
+
+                <field name="property_ids" />
+
+
             </tree>
         </field>
     </record>
@@ -20,6 +24,14 @@
             <form string="Test">
                 <field name="name" style="font-size:64px;" />
 
+                <notebook>
+                    <page string="Properties">
+                        <tree>
+                            <field name="property_ids" />
+                        </tree>
+
+                    </page>
+                </notebook>
             </form>
 
         </field>

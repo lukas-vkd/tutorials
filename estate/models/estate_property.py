@@ -1,6 +1,6 @@
 from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, exceptions
+from odoo import api, fields, models, exceptions, tools
 
 class EstateProperty(models.Model):
     # fields and methods are chronologicaly ordered to make it easier to follow the tutorial 
@@ -102,3 +102,22 @@ class EstateProperty(models.Model):
         ('check_selling_price', 'CHECK(selling_price > 0)',
          'The selling price must be positive')
     ]
+    
+    @api.constrains("selling_price")
+    def check_price(self):
+        if self.selling_price == 0:
+            pass
+        if not tools.float_compare(self.selling_price, (self.expected_price * 0.9),0.01):
+            raise exceptions.UserError("the selling price can't be lower than 90% of the expected price")
+    
+    
+    # is this best practice?
+    @api.onchange("expected_price")
+    def _onchange_expected_price(self):
+        check_price()
+
+    
+    @api.onchange("selling_price")
+    def _onchange_selling_price(self):
+        check_price()
+
