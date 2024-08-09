@@ -32,7 +32,6 @@ class EstatePropertyOffer(models.Model):
             date = offer.create_date.date() if offer.create_date else fields.Date.today()
             offer.validity = (offer.date_deadline - date).days
 
-            
     def action_accept(self):
         if self.status == "refused":
             raise exceptions.UserError("Refused offers cannot be accepted.")

@@ -76,6 +76,11 @@ class EstateProperty(models.Model):
                 if offer.price > current_best_price:
                     current_best_price = offer.price
             record.best_price = current_best_price
+            
+        #BAD PRACTICE
+        if record.best_price > 0 and record.state == "new":
+            record.state = "offer_received"
+            
 
     @api.onchange("garden")
     def _onchange_garden(self):
@@ -114,5 +119,6 @@ class EstateProperty(models.Model):
             pass
         if not tools.float_compare(self.selling_price, (self.expected_price * 0.9),0.01):
             raise exceptions.UserError("the selling price can't be lower than 90% of the expected price")
+
     
     
