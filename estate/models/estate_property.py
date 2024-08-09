@@ -6,6 +6,8 @@ class EstateProperty(models.Model):
     # fields and methods are chronologicaly ordered to make it easier to follow the tutorial 
     _name = "estate.property"
     _description = "represents a property listed on the module"
+    _order = "id desc"
+    
     name = fields.Char("Title", required=True)
     description = fields.Text("Description")
     postcode = fields.Char("Postcode")
