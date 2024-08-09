@@ -48,7 +48,7 @@ class EstateProperty(models.Model):
     #
     
     #unknown parameters (╯°□°)╯︵ ┻━┻
-    property_type_id = fields.Many2one("estate.property.type", string="type", can_create="false", can_write="false" )
+    property_type_id = fields.Many2one("estate.property.type", string="type")
     
     # we use the current user's id as the sales_person's id since the user who is listing the property is the seller
     sales_person_id = fields.Many2one("res.users", string="Salesman", default=lambda self: self.env.user)
