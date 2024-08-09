@@ -7,7 +7,7 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <tree string="Channel">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -18,7 +18,7 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <form string="Test">
-                <field name="name" style="font-size:64px;"/>
+                <field name="name" style="font-size:64px;" />
 
             </form>
 
@@ -26,15 +26,14 @@
     </record>
 
 
-
-
     <record id="estate_property_type_action" model="ir.actions.act_window">
         <field name="name">Property types</field>
         <field name="res_model">estate.property.type</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_ids" eval='[(5, 0, 0),
+        <field name="view_ids"
+            eval='[(5, 0, 0),
             (0, 0, {"view_mode": "tree", "view_id": ref("estate_property_type_view_tree")}),
-            (0, 0, {"view_mode": "form", "view_id": ref("estate_property_type_view_form")}),]'/>
+            (0, 0, {"view_mode": "form", "view_id": ref("estate_property_type_view_form")}),]' />
 
     </record>
 </odoo>

@@ -24,6 +24,7 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Test">
+                
                 <field name="name" style="font-size:64px;"/>
                 <field name="tag_ids" widget="many2many_tags"/>
                 <sheet>
@@ -71,6 +72,7 @@
                         </page>
                     </notebook>
                 </sheet>
+
             </form>
         </field>
     </record>
