@@ -26,8 +26,8 @@
             <form string="Test">
 
                 <header>
-                    <button name="action_set_sold" type="object" string="Sold" class="oe_highlight"/>
-                    <button name="action_set_cancel" type="object" string="Cancel"/>
+                    <button name="action_sold" type="object" string="Sold" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancel"/>
                 </header>
 
                 <sheet>
