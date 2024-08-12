@@ -120,7 +120,7 @@ class EstateProperty(models.Model):
             raise exceptions.UserError("the selling price can't be lower than 90% of the expected price")
 
     
-    
+    #tutorial
     #@api.ondelete
     def unlink(self):
         self.ensure_one()
