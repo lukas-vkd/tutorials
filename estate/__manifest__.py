@@ -1,6 +1,6 @@
 {
     'name': "Real Estate",
-    'version': '17.0.1.19.1',
+    'version': '17.0.1.20.0',
     'license': 'OPL-1',
     'author': "VK DATA ApS",
     'depends': ['base'],

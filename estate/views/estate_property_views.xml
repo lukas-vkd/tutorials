@@ -6,7 +6,7 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree string="Channel" decoration-success="state in ['offer_received']" decoration-primary="state in ['offer_accepted']" >
+            <tree string="Channel" decoration-success="state in ['offer_received', 'offer_accepted']" decoration-bf="state in ['offer_accepted']" decoration-muted="state in ['sold']" >
                 <field name="name" />
                 <field name="postcode" />
                 <field name="tag_ids" widget="many2many_tags" />
@@ -14,8 +14,8 @@
                 <field name="living_area" />
                 <field name="expected_price" />
                 <field name="selling_price" />
-                <field name="date_availability" />
-                <field name="state" invisible="1" />
+                <field name="date_availability" optional="1"/>
+                <field name="state" column_invisible="1" />
             </tree>
         </field>
     </record>
