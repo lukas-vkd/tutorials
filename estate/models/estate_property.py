@@ -3,9 +3,23 @@ from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, exceptions, tools
 
 class EstateProperty(models.Model):
+    
+    
+    # private attributes
+    
+    
     _name = "estate.property"
     _description = "represents a property listed on the module"
     _order = "id desc"
+    _sql_constraints = [
+        ('check_expected_price', 'CHECK(expected_price > 0)',
+         'The expected price must be positive'),
+        ('check_selling_price', 'CHECK(selling_price > 0)',
+         'The selling price must be positive')
+    ]
+    
+    #field declarations
+    
     
     name = fields.Char("Title", required=True)
     description = fields.Text("Description")
@@ -40,11 +54,9 @@ class EstateProperty(models.Model):
         copy=False,
         default="new",
     )
-
     
-    #
-    # relationships ≽^•⩊•^≼
-    #
+    
+    
     
     property_type_id = fields.Many2one("estate.property.type", string="type")
     
@@ -76,6 +88,29 @@ class EstateProperty(models.Model):
                     current_best_price = offer.price
             record.best_price = current_best_price
             
+    
+    # contraints and onchanges        
+
+
+    @api.constrains("selling_price")
+    def check_price(self):
+        if self.selling_price == 0:
+            pass
+        if not tools.float_compare(self.selling_price, (self.expected_price * 0.9),0.01):
+            raise exceptions.UserError("the selling price can't be lower than 90% of the expected price")
+    
+    
+    
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        self.garden_area = 0
+        self.garden_orientation = ""
+        if self.garden == True:
+            self.garden_area = 10
+            self.garden_orientation = "north"
+    
+
+    #CRUD methods
 
     #TODO: replace with ondelete instead of overwriting unlink
     #tutorial
@@ -89,32 +124,6 @@ class EstateProperty(models.Model):
         else:
             return super(EstateProperty, self).unlink()
 
-    
-    #contraints and onchanges        
-
-
-    @api.constrains("selling_price")
-    def check_price(self):
-        if self.selling_price == 0:
-            pass
-        if not tools.float_compare(self.selling_price, (self.expected_price * 0.9),0.01):
-            raise exceptions.UserError("the selling price can't be lower than 90% of the expected price")
-    
-    _sql_constraints = [
-        ('check_expected_price', 'CHECK(expected_price > 0)',
-         'The expected price must be positive'),
-        ('check_selling_price', 'CHECK(selling_price > 0)',
-         'The selling price must be positive')
-    ]
-    
-    
-    @api.onchange("garden")
-    def _onchange_garden(self):
-        self.garden_area = 0
-        self.garden_orientation = ""
-        if self.garden == True:
-            self.garden_area = 10
-            self.garden_orientation = "north"
     
     
     # Action methods
