@@ -96,9 +96,9 @@
                 <field name="postcode" />
                 <field name="expected_price" />
                 <field name="bedrooms" />
-                <field name="living_area" />
+                <field name="living_area" filter_domain="[('living_area', '>', self)]"/>
                 <field name="facades" />
-                <!-- only show estates that aren't sold -->
+                <!-- only show estates that aren't sold or have accepted an offer -->
                 <filter string="Available" name="available"
                     domain="[('state', 'in', ('new', 'offer_received'))]" />
                 <!-- group by source code -->
