@@ -6,12 +6,15 @@
         <field name="name">estate.property.offer.view.tree</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <tree string="Channel" editable="bottom" decoration-success="status in ['accepted']" decoration-danger="status in ['refused']" >
+            <tree string="Channel" editable="bottom" decoration-success="status in ['accepted']"
+                decoration-danger="status in ['refused']">
                 <field name="price" />
                 <field name="partner_id" />
-                <button name="action_accept" type="object" string="Accept" class="oe_highlight" invisible="status in ['accepted', 'refused']"
+                <button name="action_accept" type="object" string="Accept" class="oe_highlight"
+                    invisible="status in ['accepted', 'refused']"
                     icon="fa-check" />
-                <button name="action_refuse" type="object" string="Refuse" invisible="status in ['accepted', 'refused']" />
+                <button name="action_refuse" type="object" string="Refuse"
+                    invisible="status in ['accepted', 'refused']" />
                 <field name="status" column_invisible="1" />
             </tree>
         </field>

@@ -7,7 +7,7 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <tree string="Channel">
-                <field name="sequence" widget="handle"/>
+                <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="property_ids" />
 
@@ -23,8 +23,9 @@
         <field name="arch" type="xml">
             <form string="Test">
                 <field name="name" style="font-size:64px;" />
-                <button name="estate.estate_property_offer_action" type="action" class="oe_stat_button" icon="fa-money">
-                    <field name="offer_count" widget="statinfo" string="Offers"/>
+                <button name="estate.estate_property_offer_action" type="action"
+                    class="oe_stat_button" icon="fa-money">
+                    <field name="offer_count" widget="statinfo" string="Offers" />
                 </button>
 
                 <notebook>
