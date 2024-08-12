@@ -119,7 +119,7 @@ class EstateProperty(models.Model):
         if not tools.float_compare(self.selling_price, (self.expected_price * 0.9),0.01):
             raise exceptions.UserError("the selling price can't be lower than 90% of the expected price")
 
-    
+    #TODO: replace with ondelete instead of overwriting unlink
     #tutorial
     #@api.ondelete
     def unlink(self):

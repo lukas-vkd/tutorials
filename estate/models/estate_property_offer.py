@@ -62,3 +62,16 @@ class EstatePropertyOffer(models.Model):
     property_type_id = fields.Many2one(
         "estate.property.type", related="property_id.property_type_id", string="Property Type", store=True
     )
+    
+    @api.model
+    def create(self, vals):
+        
+        offer_property = self.env["estate.property"].browse(vals["property_id"])
+
+        # use library to compare floats
+        if vals["price"] < offer_property.best_price:
+            raise exceptions.UserError("You can't make an offer lower than the highest offer")
+       
+        offer_property.state = "offer_received"
+       
+        return super().create(vals)
