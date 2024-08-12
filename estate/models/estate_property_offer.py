@@ -59,3 +59,7 @@ class EstatePropertyOffer(models.Model):
         ('check_price', 'CHECK(price > 0)',
          'The offered price must be positive')
     ]
+    
+    property_type_id = fields.Many2one(
+        "estate.property.type", related="property_id.property_type_id", string="Property Type", store=True
+    )
