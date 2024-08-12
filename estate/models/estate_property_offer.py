@@ -1,5 +1,4 @@
 from dateutil.relativedelta import relativedelta
-import datetime
 
 from odoo import api, fields, models, exceptions
 
