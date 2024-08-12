@@ -1,6 +1,6 @@
 {
     'name': "Real Estate Account",
-    'version': '17.0.1.0.0',
+    'version': '17.0.1.1.0',
     'license': 'OPL-1',
     'author': "VK DATA ApS",
     'depends': ['base'],
@@ -9,6 +9,7 @@
     'description': 'The Real Estate module provides tools to list Estate account\'s',
     'application': True,
     'depends': [
+        'base',
         'estate',
         'account'
     ],

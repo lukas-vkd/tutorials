@@ -129,6 +129,6 @@ class EstateProperty(models.Model):
         elif ( self.state == "canceled"):
             raise exceptions.UserError("can't delete property if it's canceled ")
         else:
-            return super.unlink()
+            return super(EstateProperty, self).unlink()
 
             
