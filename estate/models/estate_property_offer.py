@@ -38,7 +38,7 @@ class EstatePropertyOffer(models.Model):
         if self.property_id.state == "sold":
             raise exceptions.UserError("Can't sell the same house twice")
 
-        self.property_id.state = "sold"        
+        self.property_id.state = "offer_accepted"        
         self.property_id.buyer_id = self.partner_id
         self.property_id.selling_price = self.price
 
