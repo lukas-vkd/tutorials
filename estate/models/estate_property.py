@@ -47,7 +47,6 @@ class EstateProperty(models.Model):
     # relationships ≽^•⩊•^≼
     #
     
-    #unknown parameters (╯°□°)╯︵ ┻━┻
     property_type_id = fields.Many2one("estate.property.type", string="type")
     
     # we use the current user's id as the sales_person's id since the user who is listing the property is the seller
@@ -78,8 +77,8 @@ class EstateProperty(models.Model):
             record.best_price = current_best_price
             
         #BAD PRACTICE
-        if record.best_price > 0 and record.state == "new":
-            record.state = "offer_received"
+        #if record.best_price > 0 and record.state == "new":
+        #    record.state = "offer_received"
             
 
     @api.onchange("garden")
@@ -122,3 +121,14 @@ class EstateProperty(models.Model):
 
     
     
+    #@api.ondelete
+    def unlink(self):
+        self.ensure_one()
+        if ( self.state == "new"):
+            raise exceptions.UserError("can't delete property if it's new ")
+        elif ( self.state == "canceled"):
+            raise exceptions.UserError("can't delete property if it's canceled ")
+        else:
+            return super.unlink()
+
+            
