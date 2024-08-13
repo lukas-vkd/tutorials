@@ -20,6 +20,8 @@ class EstateProperty(models.Model):
     
     #field declarations
     
+    company_id = fields.Integer(required=True, default= lambda self: self.env.user.company_id)
+
     
     name = fields.Char("Title", required=True)
     description = fields.Text("Description")
@@ -54,7 +56,6 @@ class EstateProperty(models.Model):
         copy=False,
         default="new",
     )
-    
     
     
     

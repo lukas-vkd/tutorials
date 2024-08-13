@@ -5,7 +5,12 @@ class estate_property(models.Model):
     
     
     def action_sold(self):
-        res = super().action_sold()
+        
+        #TODO: test this
+        self.env["account.move"].check_access_rights("write")
+        self.env["account.move"].check_access_rule("write")
+        
+        print(" reached ".center(100, '='))
         
         invoice_vals = {
             "partner_id": self.buyer_id.id,
@@ -27,7 +32,7 @@ class estate_property(models.Model):
             
         
         
-        journal = self.env["account.move"].create(invoice_vals)
+        journal = self.env["account.move"].sudo().create(invoice_vals)
 
 
         return super(estate_property, self).action_sold()
