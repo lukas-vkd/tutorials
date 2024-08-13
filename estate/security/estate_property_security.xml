@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="rule_id" model="ir.rule">
+        <field name="name">Only allow agent to access their own properties</field>
+        <field name="model_id" ref="model_estate_property"/>
+        <field name="perm_unlink" eval="False"/>
+
+        <field name="groups" eval="[Command.link(ref('estate_group_user'))]"/>
+        <field name="domain_force">[
+            '|', ('sales_person_id', '=', user.id),
+                 ('sales_person_id', '=', False)
+
+        ]</field>
+    </record>
+
+</odoo>

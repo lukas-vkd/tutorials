@@ -41,6 +41,7 @@
                 <sheet>
 
                     <field name="name" style="font-size:64px;" />
+                    <!-- a new user wouldnt notice the tag input-->
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
                     <group>
                         <group>
@@ -129,6 +130,7 @@
                                 <field name="name" />
 
                                 <field name="tag_ids" />
+                                <!-- BUG: only the numbers show up, no explanation-->
                                 <field name="expected_price" />
 
                                 <div t-if="record.state.raw_value == 'offer_received'">
