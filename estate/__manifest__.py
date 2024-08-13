@@ -19,7 +19,15 @@
         'security/estate_groups.xml',
         'security/ir.model.access.csv',
         'security/estate_property_security.xml',
+    ],
+    
+    "demo": [
+        #gives errors but work (๑`^´๑)︻デ═一 
+        #"demo/estate.property.type.csv",
+        "demo/estate_property.xml",
+        "demo/estate_property_offer.xml",
 
+        
     ]
 
 }
