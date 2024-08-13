@@ -113,10 +113,8 @@ class EstateProperty(models.Model):
 
     #CRUD methods
 
-    #TODO: replace with ondelete instead of overwriting unlink
-    #tutorial
-    #@api.ondelete
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_not_new_or_canceled(self):
         self.ensure_one()
         if ( self.state == "new"):
             raise exceptions.UserError("can't delete property if it's new ")
