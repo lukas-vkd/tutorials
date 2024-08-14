@@ -35,12 +35,12 @@ class EstateTestCase(TransactionCase):
             'active':'True',
             'state':'new',
 
-            #'offer_ids': [
-            #    (Command.CREATE, 0, {
-            #        'partner_id':'9',
-            #        'price':100000
-            #    })
-            #]
+            'offer_ids': [
+                (Command.CREATE, 0, {
+                    'partner_id':'9',
+                    'price':100000
+                })
+            ]
             #'property_type_id':'Test Partner',
             #'sales_person_id':'Test Partner',
             #'buyer_id':'Test Partner',
@@ -48,19 +48,14 @@ class EstateTestCase(TransactionCase):
 
         })
         
-        cls.offer = cls.env['estate.property.offer'].create([
-           { 
-            'property_id': cls.properties.id,
-            'price': 100000,
-            'partner_id': 9
-        
-        }])
-        print(" reached ".center(100, '='))
+       #cls.offer = cls.env['estate.property.offer'].create([
+       #   { 
+       #    'property_id': cls.properties.id,
+       #    'price': 100000,
+       #    'partner_id': 9
+       #
+       #}])
 
-        print(cls.properties.id)
-        print(cls.offer.property_id)
-        print(cls.offer.price)
-        print(" reached ".center(100, '='))
 
 
 
