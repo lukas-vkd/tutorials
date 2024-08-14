@@ -22,8 +22,7 @@
     ],
     
     "demo": [
-        #gives errors but work (๑`^´๑)︻デ═一 
-        #"demo/estate.property.type.csv",
+        "demo/estate.property.type.csv",
         "demo/estate_property.xml",
         "demo/estate_property_offer.xml",
 

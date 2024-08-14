@@ -111,17 +111,18 @@ class EstateProperty(models.Model):
             self.garden_orientation = "north"
     
 
-    #CRUD methods
-
+    #CRUD methods 
+    
+    
     @api.ondelete(at_uninstall=False)
     def _unlink_if_not_new_or_canceled(self):
         self.ensure_one()
+        for offer in self.offer_ids:
+            offer.unlink()
         if ( self.state == "new"):
             raise exceptions.UserError("can't delete property if it's new ")
-        elif ( self.state == "canceled"):
-            raise exceptions.UserError("can't delete property if it's canceled ")
-        else:
-            return super(EstateProperty, self).unlink()
+        #elif ( self.state == "canceled"):
+        #    raise exceptions.UserError("can't delete property if it's canceled ")
 
     
     

@@ -5,6 +5,10 @@
 Azure Interior: 12
 Deco addict: 2
 
+
+the tutorial said "The offers you added should always be in a date relative to the installation of the module."
+
+but arent they already since we set the validity?
 -->
 
 
@@ -31,5 +35,17 @@ Deco addict: 2
         <field name="price">1500001</field>
         <field name="validity">14</field>
     </record>
+
+    <function model="estate.property.offer" name="action_accept">
+        <value eval="[ref('azure2')]"/>
+    </function>
+
+    <function model="estate.property.offer" name="action_refuse">
+        <value eval="[ref('azure1')]"/>
+    </function>
+
+    <function model="estate.property.offer" name="action_refuse">
+        <value eval="[ref('deco1')]"/>
+    </function>
 
 </odoo>

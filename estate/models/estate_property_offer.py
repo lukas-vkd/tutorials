@@ -4,7 +4,7 @@ from odoo import api, fields, models, exceptions
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
-    _description = "represents an offer to buy the property"
+    _description = "an offer to buy a property (Many2one)"
     _order = "price desc"
     _sql_constraints = [
         ('check_price', 'CHECK(price > 0)',
