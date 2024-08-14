@@ -1,1 +1,1 @@
-from . import test_total_area
+from . import test_estate_property

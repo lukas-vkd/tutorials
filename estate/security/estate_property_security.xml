@@ -12,7 +12,7 @@
         ]</field>
     </record>
 
-    <record id="agent_own_company_rule" model="ir.rule">
+    <record id="agent_own_company_property_rule" model="ir.rule">
         <field name="name">Only allow agent to access their own company</field>
         <field name="model_id" ref="model_estate_property"/>
         <field name="groups" eval="[Command.link(ref('estate_group_user'))]"/>
@@ -22,5 +22,18 @@
 
         ]</field>
     </record>
+
+    <!-- 
+    <record id="agent_own_company_rule" model="ir.rule">
+        <field name="name">Only allow see their own company</field>
+        <field name="model_id" ref="model_company"/>
+        <field name="groups" eval="[Command.link(ref('estate_group_user'))]"/>
+        <field name="domain_force">[
+            '|', ('company_id', '=', False),
+                 ('company_id', 'in', company_ids)
+
+        ]</field>
+    </record>
+    -->
 
 </odoo>

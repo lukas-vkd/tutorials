@@ -50,7 +50,10 @@ class EstatePropertyOffer(models.Model):
         # use library to compare floats
         if vals["price"] < offer_property.best_price:
             raise exceptions.UserError("You can't make an offer lower than the highest offer")
-       
+    
+        if offer_property.state == "sold":
+            raise exceptions.UserError("You can't make an offer on a sold property")
+    
         offer_property.state = "offer_received"
        
         return super().create(vals)

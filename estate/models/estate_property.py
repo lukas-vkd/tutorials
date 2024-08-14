@@ -134,6 +134,13 @@ class EstateProperty(models.Model):
         if self.state == "canceled":
             raise exceptions.UserError("Canceled properties cannot be sold.")
         
+        if self.state == "sold":
+            raise exceptions.UserError("already sold properties cannot be sold again.")
+        
+
+        if not self.offer_ids.id:
+            raise exceptions.UserError("you can't sell a house no one wants")
+        
         self.state = "sold"
         return True
     
