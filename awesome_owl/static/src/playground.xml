@@ -8,8 +8,8 @@
         <Counter />
         <Counter />
 
-        <Card />
-        <Card />
+        <Card title="'card 1'" content="str1"/>
+        <Card title="'card 2'" content="str2"/>
 
 
 
