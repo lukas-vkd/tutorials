@@ -7,6 +7,12 @@
 
         <Counter />
         <Counter />
+
+        <Card />
+        <Card />
+
+
+
     </div>
 </t>
 
