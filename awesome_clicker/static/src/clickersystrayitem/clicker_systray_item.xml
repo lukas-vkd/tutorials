@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<templates xml:space="preserve">
-    <t t-name="awesome_clicker.clicker_sys_tray">
-        <div class="m-2 p-2 border d-inline-block">
-            <span class="me-2" style="color:white;" >Clicks: <t t-esc="state.value"/></span>
-            <button class="btn btn-primary" t-on-click="increment_10">Increment</button>
-        </div>
-    </t>
-</templates>
