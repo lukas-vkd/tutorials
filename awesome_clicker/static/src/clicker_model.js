@@ -5,7 +5,12 @@ import { EventBus } from "@odoo/owl";
 import { rewards } from "./click_rewards";
 import { choose } from "./utils";
 
+
+
+
+
 export class ClickerModel extends Reactive {
+	
 	constructor() {
 		super();
 		this.clicks = 0;
@@ -86,4 +91,8 @@ export class ClickerModel extends Reactive {
 			{ clicks: 100000, unlock: "power multiplier" },
 		];
 	}
+
+
+	
+
 }
