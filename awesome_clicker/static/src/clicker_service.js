@@ -1,22 +1,10 @@
 /** @odoo-module */
-
 import { registry } from "@web/core/registry";
-import { reactive } from "@odoo/owl";
+import { ClickerModel } from "./clicker_model";
 
 const clickerService = {
     start(env) {
-        const state = reactive({ clicks: 0 });
-
-        function increment(inc) {
-            state.clicks += inc;
-        }
-
-        document.addEventListener("click", () => increment(1), true );
-
-        return {
-            state,
-            increment,
-        };
+        return new ClickerModel();
     },
 };
 
