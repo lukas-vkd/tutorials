@@ -21,6 +21,20 @@
                     </button>
                 </div>
             </div>
+
+
+            <div class="card" t-if="this.clicker.level >= 2">
+                <div class="card-header">
+                    <t t-esc="this.clicker.bigbots"/>x ClickBots (100 clicks/10seconds)
+                    <i class="fa fa-android"></i>
+                </div>
+                <div class="card-body">
+                    <button t-on-click="() => this.clicker.buyBigBot()" class="btn btn-primary" t-att-disabled="this.clicker.clicks lt 5000">
+                        Buy BigBot (5000 clicks)
+                    </button>
+                </div>
+            </div>
+
         </div>
 
 

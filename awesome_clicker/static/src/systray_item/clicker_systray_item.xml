@@ -2,7 +2,7 @@
     <t t-name="awesome_clicker.ClickerSystray">
         <div class="o_nav_entry">
             Clicks: <ClickerValue/>
-            <button class="btn btn-secondary" t-on-click="() => this.clicker.increment(9)">
+            <button class="btn btn-secondary" t-on-click="() => this.clicker.increment(499)">
                 <i class="fa fa-lg fa-plus"></i>
             </button>
             <button class="btn btn-secondary" t-on-click="openClientAction">
