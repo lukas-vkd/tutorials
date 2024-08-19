@@ -1,87 +1,87 @@
 /** @odoo-module */
 
-import { Reactive }  from "@web/core/utils/reactive";
+import { Reactive } from "@web/core/utils/reactive";
 import { EventBus } from "@odoo/owl";
-import { rewards } from "./click_rewards"
+import { rewards } from "./click_rewards";
 import { choose } from "./utils";
 
 export class ClickerModel extends Reactive {
-    constructor() {
-        super();
-        this.clicks = 0;
-        this.level = 0;
-        this.clickBots = 0;
-        this.bigbots = 0;
-        this.bus = new EventBus();
+  constructor() {
+    super();
+    this.clicks = 0;
+    this.level = 0;
+    this.bus = new EventBus();
+    this.bots = {
+      clickbot: {
+        price: 1000,
+        level: 1,
+        increment: 10,
+        purchased: 0,
+      },
+      bigbot: {
+        price: 5000,
+        level: 2,
+        increment: 100,
+        purchased: 0,
+      },
+    };
+    this.multiplier = 1;
+    document.addEventListener("click", () => this.increment(1), true);
+    setInterval(() => {
+      for (const bot in this.bots) {
+        this.clicks +=
+          this.bots[bot].increment * this.bots[bot].purchased * this.multiplier;
+      }
+    }, 10000);
+  }
+  buyMultiplier() {
+    if (this.clicks < 50000) {
+      return false;
+    }
+    this.clicks -= 50000;
+    this.multiplier++;
+  }
+  increment(inc) {
+    this.clicks += inc;
+    if (
+      this.milestones[this.level] &&
+      this.clicks >= this.milestones[this.level].clicks
+    ) {
+      this.bus.trigger("MILESTONE", this.milestones[this.level]);
+      this.level += 1;
+    }
+  }
+  buyBot(name) {
+    if (!Object.keys(this.bots).includes(name)) {
+      throw new Error(`Invalid bot name ${name}`);
+    }
+    if (this.clicks < this.bots[name].price) {
+      return false;
+    }
+    this.clicks -= this.bots[name].price;
+    this.bots[name].purchased += 1;
+  }
 
-
-        document.addEventListener("click", () => this.increment(1), true);
-        setInterval(() => {
-            this.clicks += this.clickBots * 10;
-            this.clicks += this.bigbots * 100;
-        }, 10000);
-
-
-        
+  giveReward() {
+    const availableReward = [];
+    for (const reward of rewards) {
+      if (reward.minLevel <= this.level || !reward.minLevel) {
+        if (reward.maxLevel >= this.level || !reward.maxLevel) {
+          availableReward.push(reward);
+        }
+      }
     }
 
-    increment(inc) {
-        this.clicks += inc;
-        if (this.level < 1 && this.clicks >= 1000) {
-            this.bus.trigger("MILESTONE_1k");
-            this.level++;
-        }
-        if (this.level < 2 && this.clicks >= 5000) {
-            this.bus.trigger("MILESTONE_5k");
-            this.level++;
-        }
+    const reward = choose(availableReward);
+    this.bus.trigger("REWARD", reward);
+    return choose(availableReward);
+  }
 
-        var randomNumber = Math.floor(Math.random() * 10)
-        console.log(randomNumber)
-
-        if (randomNumber == 1){
-            this.getRewards()
-        }
-
-
-    }
-
-    buyClickBot() {
-        const clickBotPrice = 1000;
-        if (this.clicks < clickBotPrice) {
-            return false;
-        }
-        this.clicks -= clickBotPrice;
-        this.clickBots += 1;
-    }
-
-
-    buyBigBot() {
-        const bigBotPrice = 5000;
-        if (this.clicks < bigBotPrice) {
-            return false;
-        }
-        this.clicks -= bigBotPrice;
-        this.bigbots += 1;
-    }
-
-    getRewards(){
-
-
-        var availableAwards = [];
-
-        for (const reward of rewards){
-            console.log(reward)
-            if (reward.minLevel >= this.level && reward.maxLevel <= this.level){
-                availableAwards.push(award);
-            }
-        }
-
-        return choose(availableReward);
-
-
-
-
-    }
-
+  get milestones() {
+    return [
+      { clicks: 1000, unlock: "clickBot" },
+      { clicks: 5000, unlock: "bigBot" },
+      { clicks: 100000, unlock: "power multiplier" },
+    ];
+  }
 }

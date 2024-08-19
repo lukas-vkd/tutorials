@@ -1,8 +1,6 @@
-/** @odoo.module **/
+/** @odoo-module */
 
-
-function choose(list){
-
-    return list[Math.floor(Math.random() * list.length)];
-
+export function choose(list) {
+    //what happends if the list is empty
+  return list[Math.floor(Math.random() * list.length)];
 }

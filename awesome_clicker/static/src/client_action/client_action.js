@@ -6,12 +6,14 @@ import { useClicker } from "../clicker_hook";
 
 import { ClickerValue } from "../clicker_value/clicker_value";
 class ClickerClientAction extends Component {
-    static template = "awesome_clicker.ClickerClientAction";
-    static props = ['*'];
-    static components = { ClickerValue };
+  static template = "awesome_clicker.ClickerClientAction";
+  static props = ["*"];
+  static components = { ClickerValue };
 
-    setup() {
-        this.clicker = useClicker();
-    }
+  setup() {
+    this.clicker = useClicker();
+  }
 }
-registry.category("actions").add("awesome_clicker.client_action", ClickerClientAction);
+registry
+  .category("actions")
+  .add("awesome_clicker.client_action", ClickerClientAction);
